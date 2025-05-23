@@ -39,7 +39,7 @@ Node *mergeNode(Node *left, Node *right);
  * @param size Number of characters with non-zero frequencies.
  * @return Node** Pointer to an array of pointers to the created nodes.
  */
-Node **buildMaxHeap(int *frequencies, int size);
+Node **buildMaxHeap(int *frequencies, int *size);
 
 /**
  * @brief Creates a new leaf node for a character with its frequency.
@@ -64,7 +64,7 @@ void freeNode(Node *node);
  * @param size Number of elements in the heap.
  * @param i Index of the subtree root to heapify.
  */
-void maxHeapify(Node **nodes, int size, int i);
+void maxHeapify(Node **nodes, int *size, int i);
 
 /**
  * @brief Pops the root node from the heap and restores the max heap property.
@@ -72,7 +72,7 @@ void maxHeapify(Node **nodes, int size, int i);
  * @param nodes Array of node pointers representing the heap.
  * @param size Pointer to the number of elements in the heap.
  */
-void popNode(Node **nodes, int size);
+void popNode(Node **nodes, int *size);
 
 /**
  * @brief Pushes a new node into the heap and restores the max heap property.
@@ -81,6 +81,6 @@ void popNode(Node **nodes, int size);
  * @param size Pointer to the number of elements in the heap.
  * @param node Pointer to the node to be pushed into the heap.
  */
-void pushNode(Node **nodes, int size, Node *node);
+void pushNode(Node **nodes, int *size, Node *node);
 
 #endif // HUFFMAN_H

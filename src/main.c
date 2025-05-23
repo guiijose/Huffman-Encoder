@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
     int *frequencies = buildFrequencies(content, &size);
 
     // Build the max heap of nodes
-    Node **nodes = buildMaxHeap(frequencies, size);
+    Node **nodes = buildMaxHeap(frequencies, &size);
 
     return 0;
 }
