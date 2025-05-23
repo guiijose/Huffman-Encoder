@@ -31,7 +31,7 @@ char *read_file(const char *filename) {
 
     // Read the whole file into the buffer
 
-    size_t bytes_read = fread(buffer, 1, file_size, file);
+    int bytes_read = fread(buffer, 1, file_size, file);
 
     while (bytes_read < file_size) {
         // If the read was not successful, try again
@@ -41,4 +41,34 @@ char *read_file(const char *filename) {
     fclose(file); // Close the file
 
     return buffer;
+}
+
+
+int *buildFrequencies(char *content, int *size) {
+    // Initialize the frequencies array
+    int *frequencies = malloc(256 * sizeof(int));
+    if (frequencies == NULL) {
+        perror("Error allocating memory for frequencies");
+        return NULL;
+    }
+
+    // Initialize all frequencies to 0
+    for (int i = 0; i < 256; i++) {
+        frequencies[i] = 0;
+    }
+
+    // Count the frequency of each character in the content
+    for (int i = 0; content[i] != '\0'; i++) {
+        int ch = content[i];
+
+        // Increment size if new character is found
+        if (frequencies[ch] == 0) {
+            (*size)++;
+        }
+
+        // Increment the frequency of the character
+        ++frequencies[ch];
+    }
+
+    return frequencies;
 }

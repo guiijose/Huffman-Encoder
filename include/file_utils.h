@@ -9,4 +9,13 @@
  */
 char *read_file(const char *filename);
 
+/**
+ * @brief Builds the frequency array of characters from the file content
+ * 
+ * @param content The content of the file
+ * @param size Pointer to store the size of the frequency array
+ * @return int* The frequency array
+ */
+int *buildFrequencies(char *content, int *size);
+
 #endif // FILE_UTILS_H
