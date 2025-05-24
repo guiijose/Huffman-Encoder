@@ -31,10 +31,19 @@ int main(int argc, char *argv[]) {
     Node **nodes = buildMinHeap(frequencies, &size);
 
     printf("Size of heap: %d\n", size);
-    
+
     for (int i = 0; i < size; i++) {
         printf("\tCharacter index: '%d', Frequency: %d\n", nodes[i]->character, nodes[i]->frequency);
     }
+
+    Node *root = buildHuffmanTree(nodes, &size);
+
+    if (root == NULL) {
+        fprintf(stderr, "Error building Huffman tree.\n");
+        return 1;
+    }
+
+    printf("\033[0;32mHuffman tree built successfully.\033[0m\n");
 
     return 0;
 }

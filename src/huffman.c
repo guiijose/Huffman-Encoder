@@ -146,10 +146,13 @@ void pushNode(Node **nodes, int *size, Node *node) {
 Node *buildHuffmanTree(Node **nodes, int *size) {
     while (*size > 1) {
         // Pop the two nodes with the smallest frequencies
-        Node *left = nodes[0];
-        popNode(nodes, size);
-        Node *right = nodes[0];
-        popNode(nodes, size);
+        Node *left = popNode(nodes, size);
+        Node *right = popNode(nodes, size);
+        
+        if (left == NULL || right == NULL) {
+            fprintf(stderr, "Error: Not enough nodes to build the Huffman tree\n");
+            exit(EXIT_FAILURE);
+        }
 
         // Merge them into a new internal node
         Node *internalNode = mergeNode(left, right);

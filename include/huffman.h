@@ -84,4 +84,13 @@ Node *popNode(Node **nodes, int *size);
  */
 void pushNode(Node **nodes, int *size, Node *node);
 
+/**
+ * @brief Builds the Huffman tree from the array of nodes.
+ * 
+ * @param nodes Array of node pointers representing the heap.
+ * @param size Pointer to the number of elements in the heap.
+ * @return Node* Pointer to the root of the Huffman tree.
+ */
+Node *buildHuffmanTree(Node **nodes, int *size);
+
 #endif // HUFFMAN_H
