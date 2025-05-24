@@ -24,7 +24,7 @@ Node *mergeNode(Node *left, Node *right) {
     return internalNode;
 }
 
-Node **buildMaxHeap(int *frequencies, int *size) {
+Node **buildMinHeap(int *frequencies, int *size) {
     // Allocate memory for the array of Node pointers
     Node **nodes = malloc(*size * sizeof(Node *));
     if (nodes == NULL) {
@@ -49,14 +49,14 @@ Node **buildMaxHeap(int *frequencies, int *size) {
     }
 
     for (int i = (*size - 1) / 2; i >= 0; i--) {
-        // Build the max heap by calling maxHeapify on each non-leaf node
-        maxHeapify(nodes, size, i);
+        // Build the max heap by calling heapify on each non-leaf node
+        heapify(nodes, size, i);
     }
 
     return nodes;
 }
 
-void maxHeapify(Node **nodes, int *size, int i) {
+void heapify(Node **nodes, int *size, int i) {
     int largest = i;
 
     while (1) {
@@ -64,10 +64,10 @@ void maxHeapify(Node **nodes, int *size, int i) {
         int right = 2 * largest + 2;
         int maxIdx = largest;
 
-        if (left < *size && nodes[left]->frequency > nodes[maxIdx]->frequency) {
+        if (left < *size && nodes[left]->frequency < nodes[maxIdx]->frequency) {
             maxIdx = left;
         }
-        if (right < *size && nodes[right]->frequency > nodes[maxIdx]->frequency) {
+        if (right < *size && nodes[right]->frequency < nodes[maxIdx]->frequency) {
             maxIdx = right;
         }
 
@@ -123,7 +123,7 @@ void popNode(Node **nodes, int *size) {
     (*size)--;
 
     // Restore the max heap property
-    maxHeapify(nodes, size, 0);
+    heapify(nodes, size, 0);
 }
 
 void pushNode(Node **nodes, int *size, Node *node) {
@@ -135,7 +135,7 @@ void pushNode(Node **nodes, int *size, Node *node) {
     
     // Restore the max heap property
     for (int i = (*size - 1) / 2; i >= 0; i--) {
-        maxHeapify(nodes, size, i);
+        heapify(nodes, size, i);
     }
 }
 

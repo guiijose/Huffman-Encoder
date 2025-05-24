@@ -28,7 +28,11 @@ int main(int argc, char *argv[]) {
     int *frequencies = buildFrequencies(content, &size);
 
     // Build the max heap of nodes
-    Node **nodes = buildMaxHeap(frequencies, &size);
+    Node **nodes = buildMinHeap(frequencies, &size);
+
+    for (int i = 0; i < size; i++) {
+        printf("Character index: '%d', Frequency: %d\n", nodes[i]->character, nodes[i]->frequency);
+    }
 
     return 0;
 }

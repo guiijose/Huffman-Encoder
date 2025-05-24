@@ -39,7 +39,7 @@ Node *mergeNode(Node *left, Node *right);
  * @param size Number of characters with non-zero frequencies.
  * @return Node** Pointer to an array of pointers to the created nodes.
  */
-Node **buildMaxHeap(int *frequencies, int *size);
+Node **buildMinHeap(int *frequencies, int *size);
 
 /**
  * @brief Creates a new leaf node for a character with its frequency.
@@ -64,7 +64,7 @@ void freeNode(Node *node);
  * @param size Number of elements in the heap.
  * @param i Index of the subtree root to heapify.
  */
-void maxHeapify(Node **nodes, int *size, int i);
+void heapify(Node **nodes, int *size, int i);
 
 /**
  * @brief Pops the root node from the heap and restores the max heap property.
