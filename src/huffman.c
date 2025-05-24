@@ -112,11 +112,13 @@ void freeNode(Node *node) {
     }
 }
 
-void popNode(Node **nodes, int *size) {
+Node *popNode(Node **nodes, int *size) {
     if (*size <= 0) {
         fprintf(stderr, "Heap is empty\n");
-        return;
+        return NULL;
     }
+
+    Node *root = nodes[0];
 
     // Replace the root of the heap with the last element
     nodes[0] = nodes[*size - 1];
@@ -124,6 +126,8 @@ void popNode(Node **nodes, int *size) {
 
     // Restore the max heap property
     heapify(nodes, size, 0);
+
+    return root;
 }
 
 void pushNode(Node **nodes, int *size, Node *node) {
@@ -139,4 +143,21 @@ void pushNode(Node **nodes, int *size, Node *node) {
     }
 }
 
+Node *buildHuffmanTree(Node **nodes, int *size) {
+    while (*size > 1) {
+        // Pop the two nodes with the smallest frequencies
+        Node *left = nodes[0];
+        popNode(nodes, size);
+        Node *right = nodes[0];
+        popNode(nodes, size);
 
+        // Merge them into a new internal node
+        Node *internalNode = mergeNode(left, right);
+
+        // Push the new internal node back into the heap
+        pushNode(nodes, size, internalNode);
+    }
+
+    // The last remaining node is the root of the Huffman tree
+    return nodes[0];
+}

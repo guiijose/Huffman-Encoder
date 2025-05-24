@@ -30,8 +30,10 @@ int main(int argc, char *argv[]) {
     // Build the max heap of nodes
     Node **nodes = buildMinHeap(frequencies, &size);
 
+    printf("Size of heap: %d\n", size);
+    
     for (int i = 0; i < size; i++) {
-        printf("Character index: '%d', Frequency: %d\n", nodes[i]->character, nodes[i]->frequency);
+        printf("\tCharacter index: '%d', Frequency: %d\n", nodes[i]->character, nodes[i]->frequency);
     }
 
     return 0;

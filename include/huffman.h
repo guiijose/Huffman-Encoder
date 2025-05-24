@@ -71,8 +71,9 @@ void heapify(Node **nodes, int *size, int i);
  * 
  * @param nodes Array of node pointers representing the heap.
  * @param size Pointer to the number of elements in the heap.
+ * @return Node* Pointer to the popped node, or NULL if the heap is empty.
  */
-void popNode(Node **nodes, int *size);
+Node *popNode(Node **nodes, int *size);
 
 /**
  * @brief Pushes a new node into the heap and restores the max heap property.
