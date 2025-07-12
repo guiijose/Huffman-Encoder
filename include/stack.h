@@ -6,6 +6,7 @@
 
 typedef struct StackNode {
     Node *node;
+    char *code;
     struct StackNode *next;
 } StackNode;
 
@@ -35,7 +36,7 @@ StackNode *popStackNode(Stack *stack);
  * @param stack Pointer to the stack where the node will be pushed
  * @param node Pointer to the node to be pushed onto the stack
  */
-void pushStackNode(Stack *stack, Node *node);
+void pushStackNode(Stack *stack, Node *node, char *code);
 
 
 /**

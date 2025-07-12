@@ -93,4 +93,12 @@ void pushNode(Node **nodes, int *size, Node *node);
  */
 Node *buildHuffmanTree(Node **nodes, int *size);
 
+/**
+ * @brief Traverses the Huffman tree and generates codes for each character.
+ * 
+ * @param root the root of the Huffman tree.
+ * @param codes a pre-allocated array of strings to store the codes for each character.
+ */
+void traverseHuffmanTree(Node *root, char **codes);
+
 #endif // HUFFMAN_H

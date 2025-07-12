@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "../include/huffman.h"
+#include "../include/stack.h"
 
 Node *mergeNode(Node *left, Node *right) {
     // Create a new internal node
@@ -163,4 +165,41 @@ Node *buildHuffmanTree(Node **nodes, int *size) {
 
     // The last remaining node is the root of the Huffman tree
     return nodes[0];
+}
+
+void traverseHuffmanTree(Node *root, char **codes) {
+    if (root == NULL) {
+        return;
+    }
+
+    Stack *stack = createStack();
+    pushStackNode(stack, root, "");
+
+    while (!isStackEmpty(stack)) {
+        StackNode *stackNode = popStackNode(stack);
+        Node *currentNode = stackNode->node;
+        char *currentCode = stackNode->code;
+
+        if (currentNode->left == NULL && currentNode->right == NULL) {
+            // Leaf node, store the code
+            codes[(int)currentNode->character] = strdup(currentCode);
+            free(stackNode);
+        } else {
+            // Internal node, push children onto the stack with updated codes
+            if (currentNode->left != NULL) {
+                char *leftCode = malloc(strlen(currentCode) + 2);
+                sprintf(leftCode, "%s0", currentCode);
+                pushStackNode(stack, currentNode->left, leftCode);
+            }
+            if (currentNode->right != NULL) {
+                char *rightCode = malloc(strlen(currentCode) + 2);
+                sprintf(rightCode, "%s1", currentCode);
+                pushStackNode(stack, currentNode->right, rightCode);
+            }
+            free(stackNode);
+        }
+    }
+    freeStack(stack);
+
+    return;
 }

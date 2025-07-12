@@ -29,7 +29,7 @@ StackNode *popStackNode(Stack *stack) {
     return node;
 }
 
-void pushStackNode(Stack *stack, Node *node) {
+void pushStackNode(Stack *stack, Node *node, char *code) {
     StackNode *newNode = (StackNode*)malloc(sizeof(StackNode));
 
     if (newNode == NULL) {
@@ -39,6 +39,7 @@ void pushStackNode(Stack *stack, Node *node) {
 
     newNode->node = node;
     newNode->next = stack->top;
+    newNode->code = code;
     stack->top = newNode;
     stack->size++;
 }

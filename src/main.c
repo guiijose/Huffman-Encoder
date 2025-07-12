@@ -5,6 +5,10 @@
 #include "../include/file_utils.h"
 #include "../include/huffman.h"
 
+void prGreen(const char *message) {
+    printf("\033[0;32m%s\033[0m\n", message);
+}
+
 
 int main(int argc, char *argv[]) {
 
@@ -43,7 +47,23 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    printf("\033[0;32mHuffman tree built successfully.\033[0m\n");
+    prGreen("Huffman tree built successfully!");
 
+    char **codes = malloc(256 * sizeof(char *));
+
+    if (codes == NULL) {
+        perror("Error allocating memory for codes");
+        freeNode(root);
+        return 1;
+    }
+
+    traverseHuffmanTree(root, codes);
+
+    printf("Huffman codes:\n");
+    for (int i = 0; i < 256; i++) {
+        if (codes[i] != NULL) {
+            printf("Character '%c' (index %d): %s\n", i, i, codes[i]);
+        }
+    }
     return 0;
 }
